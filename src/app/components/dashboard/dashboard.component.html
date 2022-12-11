@@ -1,0 +1,12 @@
+<div class="dashboard-container">
+  <button type="button" (click)="addRecipe()">Añadir receta</button>
+
+  <div class="dashboard-container__cards" *ngIf="recipeInfo.length; else noRecipes">
+    <ng-container *ngFor="let recipeItem of recipeInfo">
+      <card-recipe [recipe]="recipeItem"></card-recipe>
+    </ng-container>
+  </div>
+  <ng-template #noRecipes>
+    <span class="dashboard-container__cards">¡No hay recetas, pulsa el botón para añadir una!</span>
+  </ng-template>
+</div>

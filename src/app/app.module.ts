@@ -1,20 +1,35 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CardRecipeComponent } from './components/card-recipe/card-recipe.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ManagmentRecipeComponent } from './shared/managment-recipe/managment-recipe.component';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent,
+    CardRecipeComponent,
+    ManagmentRecipeComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    NoopAnimationsModule
+    MatCardModule,
+    CommonModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
