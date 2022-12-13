@@ -5,5 +5,5 @@
   </div>
   <img class="card__picture" src="{{ recipe.picture }}" alt="recipe-picture" />
   <span class="card__description">{{ recipe.description }}</span>
-  <span class="card__more">VER MÁS</span>
+  <span class="card__more" (click)="goToInformation(recipe.id)">VER MÁS</span>
 </div>

@@ -126,5 +126,8 @@
       }
     }
   },
-  "defaultProject": "odilotest"
+  "defaultProject": "odilotest",
+  "cli": {
+    "analytics": false
+  }
 }

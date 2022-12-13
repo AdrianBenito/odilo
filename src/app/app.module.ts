@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { InfoRecipeComponent } from './components/card-recipe/components/info-recipe/info-recipe.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     DashboardComponent,
     CardRecipeComponent,
     ManagmentRecipeComponent,
+    InfoRecipeComponent,
   ],
   imports: [
     BrowserModule,

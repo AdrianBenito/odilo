@@ -1,0 +1,16 @@
+<div class="info-container">
+    <button type="button" (click)="callBack()">Volver</button>
+    <div class="info-container__recipe-card">
+        <span class="title">{{ recipe?.recipeName }}</span>
+        <span class="description">{{ recipe?.description }}</span>
+        <img class="picture" src="{{ recipe?.picture }}" alt="recipe-picture" />
+        <div>
+            <title>Ingredientes</title>
+            <span class="">{{ recipe?.ingredients }}</span>
+        </div>
+        <div>
+            <title>Elaboración</title>
+            <span class="">{{ recipe?.elaboration }}</span>
+        </div>
+    </div>
+</div>

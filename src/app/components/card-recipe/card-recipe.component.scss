@@ -21,6 +21,7 @@
     .trash-icon {
       width: 12px;
       height: 15px;
+      cursor: pointer;
     }
   }
 
@@ -37,7 +38,8 @@
   &__more {
     position: absolute;
     bottom: 0;
-    padding: 0 40px 20px;
+    margin: 0 40px 20px;
     font-weight: 500;
+    cursor: pointer;
   }
 }
