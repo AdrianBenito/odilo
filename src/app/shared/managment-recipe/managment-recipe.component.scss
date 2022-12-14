@@ -1,0 +1,17 @@
+.form-container {
+  width: 40vw;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+textarea {
+  height: 100px;
+}
+
+button {
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+}

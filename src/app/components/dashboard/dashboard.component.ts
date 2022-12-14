@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Recipe } from 'src/app/models/recipe.model';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RecipeService } from 'src/app/service/recipe.service';
-import Recipes from 'src/app/mock/recipes.json';
+import { Recipe } from 'src/app/models/recipe.model';
 
 @Component({
   selector: 'dashboard',
@@ -12,15 +10,19 @@ import Recipes from 'src/app/mock/recipes.json';
 })
 export class DashboardComponent implements OnInit {
 
-  recipeInfo!: Recipe[];
-  constructor(private router: Router) { }
+  recipes!: Recipe[];
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
-    this.recipeInfo = Recipes;
+    this.recipes = JSON.parse(localStorage.getItem('recipesStorage')!);
   }
 
   addRecipe() {
-    
+    this.recipeService.addRecipe();
+  }
+
+  removeRecipe(idRecipe: string) {
+    this.recipes = this.recipeService.removeRecipe(idRecipe, this.recipes);
   }
 
 }
