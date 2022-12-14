@@ -26,7 +26,7 @@ export function initializeApp(appInitService: AppInitService) {
     DashboardComponent,
     CardRecipeComponent,
     ManagmentRecipeComponent,
-    InfoRecipeComponent,
+    InfoRecipeComponent
   ],
   imports: [
     BrowserModule,

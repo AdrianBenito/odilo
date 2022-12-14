@@ -4,7 +4,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Recipe } from 'src/app/models/recipe.model';
 
@@ -17,6 +17,8 @@ const alertMessage =
 })
 export class ManagmentRecipeComponent implements OnInit {
   recipeForm!: FormGroup;
+
+  @Input() recipes!: Recipe[];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -33,7 +35,7 @@ export class ManagmentRecipeComponent implements OnInit {
       recipeName: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       ingredients: new FormControl('', [Validators.required]),
-      elaboration: new FormControl('', [Validators.required]),
+      elaboration: new FormControl('', [Validators.required])
     });
   }
 
@@ -49,19 +51,17 @@ export class ManagmentRecipeComponent implements OnInit {
       return alert(alertMessage);
     }
 
-    const recipes: Recipe[] = JSON.parse(
-      localStorage.getItem('recipesStorage')!
-    );
+    const lastItem = Number(this.recipes[this.recipes.length - 1].id) + 1;
     const recipeToPush: Recipe = {
-      id: '4',
+      id: lastItem.toString(),
       recipeName: this.recipeForm.get('recipeName')?.value,
       description: this.recipeForm.get('description')?.value,
       ingredients: this.recipeForm.get('ingredients')?.value,
       elaboration: this.recipeForm.get('elaboration')?.value,
-      picture: 'https://img-global.cpcdn.com/recipes/a6c4b770a80634f0/751x532cq70/paella-valenciana-paso-a-paso-foto-principal.jpg',
+      picture: '/assets/ratatuile.jpg' // test
     };
-    recipes.push(recipeToPush);
-    localStorage.setItem('recipesStorage', JSON.stringify(recipes));
+    this.recipes.push(recipeToPush);
+    localStorage.setItem('recipesStorage', JSON.stringify(this.recipes));
     return this.dialogRef.close();
   }
 }

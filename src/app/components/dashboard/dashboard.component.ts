@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/service/recipe.service';
 import { Recipe } from 'src/app/models/recipe.model';
 
@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   }
 
   addRecipe() {
-    this.recipeService.addRecipe();
+    this.recipeService.addRecipe(this.recipes);
   }
 
   removeRecipe(idRecipe: string) {

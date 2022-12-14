@@ -9,8 +9,10 @@ import { ManagmentRecipeComponent } from '../shared/managment-recipe/managment-r
 export class RecipeService {
   constructor(private dialog: MatDialog) {}
 
-  addRecipe() {
-    this.dialog.open(ManagmentRecipeComponent);
+  addRecipe(recipes: Recipe[]) {
+    const dialogRef = this.dialog.open(ManagmentRecipeComponent);
+    let instance = dialogRef.componentInstance;
+    instance.recipes = recipes;
   }
 
   removeRecipe(idRecipe: string, recipes: Recipe[]) {
