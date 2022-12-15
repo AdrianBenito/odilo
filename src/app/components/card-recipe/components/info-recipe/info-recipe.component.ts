@@ -24,7 +24,7 @@ export class InfoRecipeComponent implements OnInit {
   }
 
   private findRecipeFromStorage(idRecipe: string|null) {
-    const recipesParsed: Recipe[] = JSON.parse(localStorage.getItem('recipesStorage')!);
+    const recipesParsed: Recipe[] = JSON.parse(sessionStorage.getItem('recipesStorage')!);
     return recipesParsed.find((recipe) => recipe.id === idRecipe);
   }
 }

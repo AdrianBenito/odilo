@@ -17,7 +17,7 @@ export class RecipeService {
 
   removeRecipe(idRecipe: string, recipes: Recipe[]) {
     const filterRecipes = recipes.filter((recipe) => recipe.id !== idRecipe);
-    localStorage.setItem('recipesStorage', JSON.stringify(filterRecipes));
+    sessionStorage.setItem('recipesStorage', JSON.stringify(filterRecipes));
     return filterRecipes;
   }
 }

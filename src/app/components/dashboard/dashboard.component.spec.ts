@@ -5,6 +5,7 @@ import { RecipeService } from 'src/app/service/recipe.service';
 import { of } from 'rxjs';
 import { DashboardComponent } from './dashboard.component';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Recipe } from 'src/app/models/recipe.model';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -95,9 +96,39 @@ describe('DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create', () => {
+  it('should call to addRecipe method', () => {
     component.addRecipe();
 
     expect(spyMatDialog.open).toHaveBeenCalled();
+  });
+
+  it('should call to removeRecipe method', () => {
+    const mockRecipes: Recipe[] = [
+      {
+        description: 'Paella description',
+        elaboration: 'Paella elaboration',
+        id: '1',
+        ingredients: 'Paella ingredients',
+        picture:
+          'https://img-global.cpcdn.com/recipes/a6c4b770a80634f0/751x532cq70/paella-valenciana-paso-a-paso-foto-principal.jpg',
+        recipeName: 'Paella valenciana',
+      },
+      {
+        description: 'Pizza description',
+        elaboration: 'Pizza elaboration',
+        id: '2',
+        ingredients: 'Pizza ingredients',
+        picture:
+          'https://static.guiainfantil.com/media/6084/c/pizza-barbacoa-un-clasico-para-ninos-md.jpg',
+        recipeName: 'Pizza barbacoa',
+      },
+    ];
+    component.recipes = mockRecipes;
+    component.removeRecipe('1');
+
+    mockRecipeService.removeRecipe('1', mockRecipes);
+    sessionStorage.setItem('recipesStorage', JSON.stringify(mockRecipes[1]));
+
+    expect(mockRecipes).toContain(mockRecipes[1]);
   });
 });

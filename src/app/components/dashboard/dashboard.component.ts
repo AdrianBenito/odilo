@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(private recipeService: RecipeService) { }
 
   ngOnInit(): void {
-    this.recipes = JSON.parse(localStorage.getItem('recipesStorage')!);
+    this.recipes = JSON.parse(sessionStorage.getItem('recipesStorage')!);
   }
 
   addRecipe() {

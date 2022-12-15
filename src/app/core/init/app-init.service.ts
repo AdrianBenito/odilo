@@ -7,7 +7,7 @@ export class AppInitService {
     appInit() {
         return new Promise<void>((resolve, reject) => {
             setTimeout(() => {
-                localStorage.setItem('recipesStorage', JSON.stringify(MockRecipes));
+                sessionStorage.setItem('recipesStorage', JSON.stringify(MockRecipes));
                 resolve();
             });
         });

@@ -92,7 +92,7 @@ describe('RecipeService', () => {
   describe('removeRecipe', () => {
     it('should remove recipe', () => {
       service.removeRecipe('1', mockRecipes);
-      localStorage.setItem('recipesStorage', JSON.stringify(mockRecipes[1]));
+      sessionStorage.setItem('recipesStorage', JSON.stringify(mockRecipes[1]));
 
       expect(mockRecipes).toContain(mockRecipes[1]);
     });
