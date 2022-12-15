@@ -4,12 +4,7 @@
     <form class="form-container__form" [formGroup]="recipeForm">
       <mat-form-field appearance="fill">
         <mat-label>Nombre de la receta</mat-label>
-        <input
-          matInput
-          title="recipeName"
-          type="text"
-          formControlName="recipeName"
-        />
+        <input matInput title="recipeName" type="text" formControlName="recipeName" />
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Descripción</mat-label>
@@ -23,7 +18,12 @@
         <mat-label>Elaboración</mat-label>
         <textarea matInput type="text" formControlName="elaboration"></textarea>
       </mat-form-field>
-      <!-- <input title="input-file" type="file" formControlName="image" /> -->
+      <mat-error
+        *ngIf="recipeForm.get('image')?.hasError('required') && recipeForm.get('image')?.touched">
+        {{imageRequiredLabel}}
+      </mat-error>
+      <img *ngIf="imageUrl && recipeForm.get('image')?.value" [src]="imageUrl">
+      <input title="file" #Image type="file" (change)="handleFileInput($event.target.files)" formControlName="image" />
     </form>
   </mat-dialog-content>
 </div>

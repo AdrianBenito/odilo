@@ -11,12 +11,16 @@ import { Recipe } from 'src/app/models/recipe.model';
 const alertMessage =
   '¡Los datos introducidos no son válidos! ¡Repasa los campos!';
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'managment-recipe',
   templateUrl: './managment-recipe.component.html',
   styleUrls: ['./managment-recipe.component.scss'],
 })
 export class ManagmentRecipeComponent implements OnInit {
   recipeForm!: FormGroup;
+  fileToUpload: any;
+  imageUrl: any;
+  imageRequiredLabel = 'Imagen obligatoria';
 
   @Input() recipes!: Recipe[];
 
@@ -24,21 +28,37 @@ export class ManagmentRecipeComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ManagmentRecipeComponent>,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.buildForm();
   }
 
+  // tslint:disable-next-line:typedef
   buildForm() {
     this.recipeForm = this.fb.group({
       recipeName: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       ingredients: new FormControl('', [Validators.required]),
-      elaboration: new FormControl('', [Validators.required])
+      elaboration: new FormControl('', [Validators.required]),
+      image: new FormControl('', [Validators.required]),
     });
   }
 
+  // tslint:disable-next-line:typedef
+  handleFileInput(file: FileList) {
+    this.fileToUpload = file.item(0);
+
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      this.imageUrl = event.target.result;
+    };
+    if (this.fileToUpload) {
+      reader.readAsDataURL(this.fileToUpload);
+    }
+  }
+
+  // tslint:disable-next-line:typedef
   saveRecipe() {
     if (this.recipeForm.invalid) {
       Object.keys(this.recipeForm.controls).forEach((field) => {
@@ -51,14 +71,14 @@ export class ManagmentRecipeComponent implements OnInit {
       return alert(alertMessage);
     }
 
-    const lastItem = Number(this.recipes[this.recipes.length - 1].id) + 1;
+    const lastItem = this.recipes.length ? Number(this.recipes[this.recipes.length - 1].id) + 1 : 1;
     const recipeToPush: Recipe = {
       id: lastItem.toString(),
       recipeName: this.recipeForm.get('recipeName')?.value,
       description: this.recipeForm.get('description')?.value,
       ingredients: this.recipeForm.get('ingredients')?.value,
       elaboration: this.recipeForm.get('elaboration')?.value,
-      picture: '/assets/ratatuile.jpg' // test
+      picture: this.imageUrl
     };
     this.recipes.push(recipeToPush);
     localStorage.setItem('recipesStorage', JSON.stringify(this.recipes));

@@ -4,6 +4,10 @@
   &__form {
     display: flex;
     flex-direction: column;
+
+    input span.input-image {
+      color: #f44336;
+    }
   }
 }
 textarea {
@@ -14,4 +18,8 @@ button {
   border: none;
   padding: 10px 15px;
   border-radius: 6px;
+}
+
+img {
+  width: 100%;
 }
